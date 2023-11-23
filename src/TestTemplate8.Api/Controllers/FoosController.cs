@@ -38,6 +38,7 @@ namespace TestTemplate8.Api.Controllers
         {
             var foo = await _sender.Send(getFooQuery);
             var response = _mapper.Map<FooGetModel>(foo);
+
             return Ok(response);
         }
 
