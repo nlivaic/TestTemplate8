@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TestTemplate8.Migrations": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
