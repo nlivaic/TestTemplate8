@@ -1,0 +1,40 @@
+{
+	"api": {
+		"acceptMappedClaims": null,
+		"knownClientApplications": [],
+		"oauth2PermissionScopes": [
+		  {
+			"adminConsentDescription": "Full Access",
+			"adminConsentDisplayName": "Full Access",
+			"id": "13f7dd10-0e0d-4b9e-9bc2-38c45af96b0a",
+			"isEnabled": true,
+			"type": "Admin",
+			"userConsentDescription": "Full Access",
+			"userConsentDisplayName": "Full Access",
+			"value": "FullAccess"
+		  },
+		  {
+			"adminConsentDescription": "Full Access1",
+			"adminConsentDisplayName": "Full Access1",
+			"id": "e2715e9c-6213-406b-8833-bbc4278e2c17",
+			"isEnabled": true,
+			"type": "Admin",
+			"userConsentDescription": "Full Access1",
+			"userConsentDisplayName": "Full Access1",
+			"value": "FullAccess1"
+		  },
+		  {
+			"adminConsentDescription": "Full Access2",
+			"adminConsentDisplayName": "Full Access2",
+			"id": "13f7dd10-0e0d-4b9e-9bc2-38c45af96b0b",
+			"isEnabled": true,
+			"type": "Admin",
+			"userConsentDescription": "Full Access2",
+			"userConsentDisplayName": "Full Access2",
+			"value": "FullAccess2"
+		  },
+		],
+		"preAuthorizedApplications": [],
+		"requestedAccessTokenVersion": null
+	  }
+ }
