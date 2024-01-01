@@ -2,11 +2,11 @@
 
 #az account set -s $SUBSCRIPTION
 echo '::::::::::::::::::::::::::::::::::::::::env vars START::::::::::::::::::::::::::::::::::::::::'
-echo $(LOCATION)
-echo $(ENVIRONMENT)
-echo $(PROJECT_NAME)
-echo $(DB_USER)
-echo $(DB_PASSWORD)
+echo $env:LOCATION
+echo $env:ENVIRONMENT
+echo $env:PROJECT_NAME
+echo $env:DB_USER
+echo $env:DB_PASSWORD
 echo '::::::::::::::::::::::::::::::::::::::::env vars END::::::::::::::::::::::::::::::::::::::::'
 
 # Resource group
