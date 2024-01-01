@@ -100,7 +100,7 @@ jobs:
             azureSubscription: 'AzureConnection'
             scriptType: pscore
             scriptLocation: 'scriptPath'
-            scriptPath: 'deployment/provision.ps1'
+            scriptPath: 'provision.ps1'
 
         - script: dotnet $(Pipeline.Workspace)/drop/TestTemplate8.Migrations/TestTemplate8.Migrations.dll "$(bicepOutput.dbConnection)" "$(DB_USER)" "$(DB_PASSWORD)" "$(Pipeline.Workspace)/drop/TestTemplate8.Migrations"
           displayName: 'Migrate database'
