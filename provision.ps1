@@ -1,6 +1,6 @@
 # Use this file only to provision Azure resources from local.
 
-az account set -s $SUBSCRIPTION
+#az account set -s $SUBSCRIPTION
 
 # Resource group
 $jsonResultRg = az deployment sub create --location $LOCATION --template-file ./deployment/resource-group.bicep --parameters environment=$ENVIRONMENT projectName=$PROJECT_NAME location=$LOCATION | ConvertFrom-Json
