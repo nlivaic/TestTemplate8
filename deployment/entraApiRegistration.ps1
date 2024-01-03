@@ -44,14 +44,14 @@ $bodyOauth2PermissionScopesApiOld = @{
 }
 $bodyOauth2PermissionScopesApiOldJsonEscaped = ($bodyOauth2PermissionScopesApiOld|ConvertTo-Json -d 4 -Compress)
 $bodyOauth2PermissionScopesApiOldJsonEscaped | Out-File -FilePath .\oauth2PermissionScopesOld.json
-az rest --method PATCH --uri $graphurl --headers $headerJson --body '@deployment/oauth2PermissionScopesOld.json'
+az rest --method PATCH --uri $graphurl --headers $headerJson --body '@oauth2PermissionScopesOld.json'
 Remove-Item .\oauth2PermissionScopesOld.json
 Write-Host "Existing scopes disabled successfully."
 
 # 3. Add new scopes from file oauth2PermissionScopes.json.
 Write-Host ""
 Write-Host "Creating scopes..."
-az rest --method PATCH --uri $graphurl --headers $headerJson --body '@oauth2PermissionScopes.json'
+az rest --method PATCH --uri $graphurl --headers $headerJson --body '@deployment/oauth2PermissionScopes.json'
 # 4. Re-enable previously disabled scopes.
 if ($? -eq $false) {
     Write-Error "Error creating scopes."
