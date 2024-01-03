@@ -1,10 +1,10 @@
 # Use this file only to provision Azure resources from local.
-
+param ([SecureString] $dbPassword)
 #az account set -s $SUBSCRIPTION
-$dbPassword = $args[0]
 echo "=============================================================================================================================="
 echo $dbPassword
 echo "=============================================================================================================================="
+
 # Resource group
 $jsonResultRg = az deployment sub create --location $env:LOCATION --template-file ./deployment/resource-group.bicep --parameters environment=$env:ENVIRONMENT projectName=$env:PROJECT_NAME location=$env:LOCATION | ConvertFrom-Json
 $resourceGroupName = $jsonResultRg.properties.outputs.resourceGroupName.value
