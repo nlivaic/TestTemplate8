@@ -31,7 +31,7 @@ $headerJson = $headerJson.replace('"', '\"')
 $graphURL="https://graph.microsoft.com/v1.0/applications/$azAppOID"
 
 Write-Host ""
-Write-Host "Disabling and deleting existing scopes..."
+Write-Host "Disabling existing scopes..."
 # 1. Read existing scopes.
 $oauth2PermissionScopesApiOld = $appRegistrationResult.api
 # 2. Disable scopes, because we want to provision from a list.
