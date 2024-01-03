@@ -101,7 +101,7 @@ jobs:
             scriptType: pscore
             scriptLocation: 'scriptPath'
             scriptPath: 'provision.ps1'
-            arguments: '$(DB_PASSWORD)'
+            arguments: '$(LOCATION), $(ENVIRONMENT), $(PROJECT_NAME), $(DB_USER), $(DB_PASSWORD)'
 
         - script: dotnet $(Pipeline.Workspace)/drop/TestTemplate8.Migrations/TestTemplate8.Migrations.dll "$(bicepOutput.dbConnection)" "$(DB_USER)" "$(DB_PASSWORD)" "$(Pipeline.Workspace)/drop/TestTemplate8.Migrations"
           displayName: 'Migrate database'
