@@ -6,7 +6,7 @@ Param( [string]$displayNameApi = "" )
 $appRegistration = az ad app create `
     --display-name $displayNameApi `
     --sign-in-audience AzureADMyOrg `
-    --required-resource-accesses "manifest.json"
+    --required-resource-accesses "deployment/manifest.json"
 
 $appRegistrationResult = ($appRegistration | ConvertFrom-Json)
 $appRegistrationResultAppId = $appRegistrationResult.appId
@@ -44,7 +44,7 @@ $bodyOauth2PermissionScopesApiOld = @{
 }
 $bodyOauth2PermissionScopesApiOldJsonEscaped = ($bodyOauth2PermissionScopesApiOld|ConvertTo-Json -d 4 -Compress)
 $bodyOauth2PermissionScopesApiOldJsonEscaped | Out-File -FilePath .\oauth2PermissionScopesOld.json
-az rest --method PATCH --uri $graphurl --headers $headerJson --body '@oauth2PermissionScopesOld.json'
+az rest --method PATCH --uri $graphurl --headers $headerJson --body '@deployment/oauth2PermissionScopesOld.json'
 Remove-Item .\oauth2PermissionScopesOld.json
 Write-Host "Existing scopes disabled successfully."
 
