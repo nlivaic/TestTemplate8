@@ -2,12 +2,7 @@
 
 #az account set -s $SUBSCRIPTION
 echo "=============================================================================================================================="
-echo "dollar env:DB_PASSWORD"
-echo $env:DB_PASSWORD
-echo "dollar(env:DB_PASSWORD)"
-echo $(env:DB_PASSWORD)
-echo "dollar (dollar env:DB_PASSWORD)"
-echo $($env:DB_PASSWORD)
+echo $(DB_PASSWORD)
 echo "=============================================================================================================================="
 # Resource group
 $jsonResultRg = az deployment sub create --location $env:LOCATION --template-file ./deployment/resource-group.bicep --parameters environment=$env:ENVIRONMENT projectName=$env:PROJECT_NAME location=$env:LOCATION | ConvertFrom-Json
