@@ -3,6 +3,7 @@
 ##################################
 Param( [string]$displayNameApi = "" )
 
+Write-Host "--- Create Azure App Registration - START ---"
 $appRegistration = az ad app create `
     --display-name $displayNameApi `
     --sign-in-audience AzureADMyOrg `
@@ -13,16 +14,20 @@ $appRegistrationResultAppId = $appRegistrationResult.appId
 $azAppOID = (az ad app show --id $appRegistrationResultAppId  | ConvertFrom-JSON).id
 
 Write-Host "Created API $displayNameApi with appId: $appRegistrationResultAppId"
+Write-Host "--- Create Azure App Registration - END ---"
 
 ##################################
 ### Expose API
 ##################################
+Write-Host "--- Expose API - START ---"
 az ad app update --id $appRegistrationResultAppId --identifier-uris api://$appRegistrationResultAppId
 Write-Host "API $displayNameApi exposed"
+Write-Host "--- Expose API - END ---"
 
 ##################################
 ###  Add scopes (oauth2Permissions)
 ##################################
+Write-Host "--- Add scopes - START ---"
 # 0. Setup some basic stuff to work with scopes.
 $headerJson = @{
     'Content-Type' = 'application/json'
@@ -74,10 +79,12 @@ foreach ($scope in $oauth2PermissionScopesApi.oauth2PermissionScopes) {
     Write-Host "`tScope created: $($scope.value)"
 }
 Write-Host "Scopes created successfully."
+Write-Host "--- Add scopes - END ---"
 
 ##################################
 ###  Create a ServicePrincipal for the API App Registration
 ##################################
+Write-Host "--- Create a ServicePrincipal - START ---"
 
 az ad app show --id $appRegistrationResultAppId
 if ($? -eq $false) {
@@ -86,6 +93,7 @@ if ($? -eq $false) {
 } else {
     Write-Host "Service Principal already exists, skipped creation."
 }
+Write-Host "--- Create a ServicePrincipal - END ---"
 
 ##################################
 ###  Return configuration
