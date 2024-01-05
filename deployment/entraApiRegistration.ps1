@@ -86,7 +86,7 @@ Write-Host "--- Add scopes - END ---"
 ##################################
 Write-Host "--- Create a ServicePrincipal - START ---"
 
-az ad app show --id $appRegistrationResultAppId
+az ad sp show --id $appRegistrationResultAppId
 if ($? -eq $false) {
     az ad sp create --id $appRegistrationResultAppId
     Write-Host "Created Service Principal for API App registration"
