@@ -2,7 +2,7 @@
 param ($location, $environment, $projectName, $dbUser, $dbPassword)
 #az account set -s $SUBSCRIPTION
 Write-Host "------ Azure AD Provisioning START ------"
-$entraApiConfiguration = .\deployment\entraApiRegistration.ps1 "$($projectName)api"
+$entraApiConfiguration = .\deployment\entraApiRegistration.ps1 "$($projectName)Api"
 Write-Host "------ Azure AD Provisioning END ------"
 
 # Resource group
