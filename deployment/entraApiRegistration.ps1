@@ -81,18 +81,24 @@ foreach ($scope in $oauth2PermissionScopesApi.oauth2PermissionScopes) {
 Write-Host "Scopes created successfully."
 Write-Host "--- Add scopes - END ---"
 
+Write-Host ""
+Write-Host "Registered App details:"
+Write-Host $appRegistration
+
 ##################################
 ###  Create a ServicePrincipal for the API App Registration
 ##################################
 Write-Host "--- Create a ServicePrincipal - START ---"
 
-az ad sp show --id $appRegistrationResultAppId
+$createdSp = az ad sp show --id $appRegistrationResultAppId
 if ($? -eq $false) {
-    az ad sp create --id $appRegistrationResultAppId
+    $createdSp = az ad sp create --id $appRegistrationResultAppId
     Write-Host "Created Service Principal for API App registration"
 } else {
     Write-Host "Service Principal already exists, skipped creation."
 }
+Write-Host "Service principal details:"
+Write-Host $createdSp
 Write-Host "--- Create a ServicePrincipal - END ---"
 
 ##################################
