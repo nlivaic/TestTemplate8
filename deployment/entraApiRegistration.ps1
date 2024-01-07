@@ -1,13 +1,16 @@
 ##################################
 ### Create Azure App Registration
 ##################################
-Param( [string]$displayNameApi = "" )
+Param( [string]$projectName = "" )
+
+$displayNameApi = "$($projectName)Api"
 
 Write-Host "--- Create Azure App Registration - START ---"
+Write-Host "displayNameApi: $displayNameApi"
 $appRegistration = az ad app create `
     --display-name $displayNameApi `
     --sign-in-audience AzureADMyOrg `
-    --required-resource-accesses "deployment/manifest.json"
+    --required-resource-accesses "manifest.json"
 
 $appRegistrationResult = ($appRegistration | ConvertFrom-Json)
 $appRegistrationResultAppId = $appRegistrationResult.appId
@@ -56,7 +59,7 @@ Write-Host "Existing scopes disabled successfully."
 # 3. Add new scopes from file oauth2PermissionScopes.json.
 Write-Host ""
 Write-Host "Creating scopes..."
-az rest --method PATCH --uri $graphurl --headers $headerJson --body '@deployment/oauth2PermissionScopes.json'
+az rest --method PATCH --uri $graphurl --headers $headerJson --body '@oauth2PermissionScopes.json'
 # 4. Re-enable previously disabled scopes.
 if ($? -eq $false) {
     Write-Error "Error creating scopes."
@@ -104,8 +107,12 @@ Write-Host "--- Create a ServicePrincipal - END ---"
 ##################################
 ###  Return configuration
 ##################################
-[hashtable]$Configuration = @{} 
-$Configuration.AuthAuthority = [string]"https://login.microsoftonline.com/$azAppOID/v2.0"
-$Configuration.AuthAudience = [string]"api://$appRegistrationResultAppId" 
-$Configuration.AuthValidIssuer = [string]"https://sts.windows.net/$azAppOID/" 
-return $Configuration
+Write-Host "##vso[task.setvariable variable=authAuthority;isoutput=true]https://login.microsoftonline.com/$azAppOID/v2.0"
+Write-Host "##vso[task.setvariable variable=authAudience;isoutput=true]api://$appRegistrationResultAppId"
+Write-Host "##vso[task.setvariable variable=authValidIssuer;isoutput=true]https://sts.windows.net/$azAppOID/"
+
+#[hashtable]$Configuration = @{} 
+#$Configuration.AuthAuthority = [string]"https://login.microsoftonline.com/$azAppOID/v2.0"
+#$Configuration.AuthAudience = [string]"api://$appRegistrationResultAppId" 
+#$Configuration.AuthValidIssuer = [string]"https://sts.windows.net/$azAppOID/" 
+#return $Configuration
