@@ -10,7 +10,7 @@ Write-Host "displayNameApi: $displayNameApi"
 $appRegistration = az ad app create `
     --display-name $displayNameApi `
     --sign-in-audience AzureADMyOrg `
-    --required-resource-accesses "manifest.json"
+    --required-resource-accesses "deployment/manifest.json"
 
 $appRegistrationResult = ($appRegistration | ConvertFrom-Json)
 $appRegistrationResultAppId = $appRegistrationResult.appId
@@ -59,7 +59,7 @@ Write-Host "Existing scopes disabled successfully."
 # 3. Add new scopes from file oauth2PermissionScopes.json.
 Write-Host ""
 Write-Host "Creating scopes..."
-az rest --method PATCH --uri $graphurl --headers $headerJson --body '@oauth2PermissionScopes.json'
+az rest --method PATCH --uri $graphurl --headers $headerJson --body '@deployment/oauth2PermissionScopes.json'
 # 4. Re-enable previously disabled scopes.
 if ($? -eq $false) {
     Write-Error "Error creating scopes."

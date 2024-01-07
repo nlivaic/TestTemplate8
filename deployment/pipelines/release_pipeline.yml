@@ -111,7 +111,7 @@ jobs:
             azureSubscription: 'AzureConnection'
             scriptType: pscore
             scriptLocation: 'scriptPath'
-            scriptPath: 'entraApiRegistration.ps1'
+            scriptPath: './deployment/entraApiRegistration.ps1'
             arguments: '$(PROJECT_NAME)'
             powerShellErrorActionPreference: stop
         
@@ -122,7 +122,7 @@ jobs:
             azureSubscription: 'AzureConnection'
             scriptType: pscore
             scriptLocation: 'scriptPath'
-            scriptPath: 'provisionResourceGroup.ps1'
+            scriptPath: './deployment/provisionResourceGroup.ps1'
             arguments: '$(LOCATION) $(ENVIRONMENT) $(PROJECT_NAME)'
             powerShellErrorActionPreference: stop
         
@@ -133,7 +133,7 @@ jobs:
             azureSubscription: 'AzureConnection'
             scriptType: pscore
             scriptLocation: 'scriptPath'
-            scriptPath: 'provisionResources.ps1'
+            scriptPath: './deployment/provisionResources.ps1'
             arguments: '$(ENVIRONMENT) $(PROJECT_NAME) $(provisionResourceGroup.resourceGroupName) $(DB_USER) $(DB_PASSWORD) $(entraApiRegistration.authAuthority) $(entraApiRegistration.authAudience) $(entraApiRegistration.authValidIssuer)'
             powerShellErrorActionPreference: stop
 
