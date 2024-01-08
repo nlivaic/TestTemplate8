@@ -49,7 +49,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deployment", "deployment", 
 		deployment\iac.bicep = deployment\iac.bicep
 		deployment\manifest.json = deployment\manifest.json
 		deployment\oauth2PermissionScopes.json = deployment\oauth2PermissionScopes.json
-		deployment\provision.ps1 = deployment\provision.ps1
 		deployment\provisionResourceGroup.ps1 = deployment\provisionResourceGroup.ps1
 		deployment\provisionResources.ps1 = deployment\provisionResources.ps1
 		deployment\resource-group.bicep = deployment\resource-group.bicep
