@@ -75,35 +75,6 @@ jobs:
             project: '$(adoProject)'
             downloadPath: '$(Pipeline.Workspace)/drop/TestTemplate8.Migrations'
 
-        # - task: AzureCLI@2
-        #   displayName: 'Deploy Bicep'
-        #   name: 'bicepOutput'
-        #   inputs:
-        #     azureSubscription: 'AzureConnection'
-        #     scriptType: pscore
-        #     scriptLocation: inlineScript
-        #     useGlobalConfig: false
-        #     inlineScript: |
-        #       $jsonResultRg = az deployment sub create --location $(LOCATION) --template-file ./deployment/resource-group.bicep --parameters environment=$(ENVIRONMENT) projectName=$(PROJECT_NAME) location=$(LOCATION) | ConvertFrom-Json
-        #       $resourceGroupName = $jsonResultRg.properties.outputs.resourceGroupName.value
-        #       Write-Host "##vso[task.setvariable variable=resourceGroupName;isoutput=true]$resourceGroupName"
-        #       $jsonResultAll = az deployment group create --resource-group $resourceGroupName --template-file ./deployment/iac.bicep --parameters environment=$(ENVIRONMENT) projectName=$(PROJECT_NAME) db_user=$(DB_USER) db_password=$(DB_PASSWORD) authAuthority='$entraApiConfiguration.AuthAuthority' authAudience='$entraApiConfiguration.AuthAudience' authValidIssuer='$entraApiConfiguration.AuthValidIssuer' | ConvertFrom-Json
-        #       $appServiceWebName = $jsonResultAll.properties.outputs.appServiceWebName.value
-        #       Write-Host "##vso[task.setvariable variable=appServiceWebName;isoutput=true]$appServiceWebName"
-        #       $dbConnection = $jsonResultAll.properties.outputs.dbConnection.value
-        #       Write-Host "##vso[task.setvariable variable=dbConnection;isoutput=true]$dbConnection"
-
-        #- task: AzureCLI@2
-        #  displayName: 'Deploy Bicep'
-        #  name: 'bicepOutput'
-        #  inputs:
-        #    azureSubscription: 'AzureConnection'
-        #    scriptType: pscore
-        #    scriptLocation: 'scriptPath'
-        #    scriptPath: 'provision.ps1'
-        #    arguments: '$(LOCATION) $(ENVIRONMENT) $(PROJECT_NAME) $(DB_USER) $(DB_PASSWORD)'
-        #    powerShellErrorActionPreference: stop
-        
         - task: AzureCLI@2
           displayName: 'Entra Api Registration'
           name: 'entraApiRegistration'
