@@ -85,8 +85,8 @@ namespace TestTemplate8.Api
                 // {
                 //     Authentication = SqlAuthenticationMethod.ActiveDirectoryManagedIdentity
                 // };
-                // options.UseSqlServer(connString.ConnectionString);
                 //options.UseSqlServer(_configuration.GetConnectionString("TestTemplate8DbConnection"));
+                options.UseSqlServer(connString.ConnectionString);
                 if (_hostEnvironment.IsDevelopment())
                 {
                     options.EnableSensitiveDataLogging(true);
