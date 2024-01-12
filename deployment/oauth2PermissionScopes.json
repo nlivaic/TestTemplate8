@@ -8,7 +8,7 @@
 			"adminConsentDisplayName": "Full Access",
 			"id": "13f7dd10-0e0d-4b9e-9bc2-38c45af96b0a",
 			"isEnabled": true,
-			"type": "Admin",
+			"type": "User",
 			"userConsentDescription": "Full Access",
 			"userConsentDisplayName": "Full Access",
 			"value": "FullAccess"
