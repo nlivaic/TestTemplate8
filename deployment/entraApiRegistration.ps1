@@ -1,7 +1,10 @@
 ##################################
 ### Create Azure App Registration
 ##################################
-Param( [string]$projectName = "" )
+Param( [string]$projectName, [string]$tenantId )
+
+echo "Here goes tenantId: "
+echo $tenantId
 
 $displayNameApi = "$($projectName)Api"
 
