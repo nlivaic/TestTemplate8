@@ -83,8 +83,9 @@ jobs:
             scriptType: pscore
             scriptLocation: 'scriptPath'
             scriptPath: './deployment/entraApiRegistration.ps1'
-            arguments: '$(PROJECT_NAME)'
+            arguments: '$(PROJECT_NAME) $env:tenantId'
             powerShellErrorActionPreference: stop
+            addSpnToEnvironment: true
         
         - task: AzureCLI@2
           displayName: 'Provision Resource Group'
