@@ -52,7 +52,7 @@ $bodyOauth2PermissionScopesApiOld = @{
 }
 $bodyOauth2PermissionScopesApiOldJsonEscaped = ($bodyOauth2PermissionScopesApiOld|ConvertTo-Json -d 4 -Compress)
 $bodyOauth2PermissionScopesApiOldJsonEscaped | Out-File -FilePath .\oauth2PermissionScopesOld.json
-az rest --method PATCH --uri $graphurl --headers $headerJson --body '@oauth2PermissionScopesOld.json'
+az rest --method PATCH --uri $graphurl --headers $headerJson --body '@deployment/oauth2PermissionScopesOld.json'
 Remove-Item .\oauth2PermissionScopesOld.json
 Write-Host "Existing scopes disabled successfully." -ForegroundColor Green
 
@@ -70,7 +70,7 @@ if ($? -eq $false) {
     }
     $bodyOauth2PermissionScopesApiOldJsonEscaped = ($bodyOauth2PermissionScopesApiOld|ConvertTo-Json -d 4 -Compress)
     $bodyOauth2PermissionScopesApiOldJsonEscaped | Out-File -FilePath .\oauth2PermissionScopesOld.json
-    az rest --method PATCH --uri $graphurl --headers $headerJson --body '@oauth2PermissionScopesOld.json'
+    az rest --method PATCH --uri $graphurl --headers $headerJson --body '@deployment/oauth2PermissionScopesOld.json'
     Remove-Item .\oauth2PermissionScopesOld.json
     Write-Host "--- Add scopes - END (Error) ---" -ForegroundColor Red
     Return
@@ -90,7 +90,15 @@ Write-Host "Registered App details:" -ForegroundColor Green
 Write-Host $appRegistration -ForegroundColor Green
 
 ##################################
-###  Create a ServicePrincipal for the API App Registration
+###  Service Principal Lock
+##################################
+Write-Host "--- Service Principal Lock - START ---" -ForegroundColor Yellow
+az rest --method PATCH --uri $graphurl --headers $headerJson --body '@deployment/servicePrincipalLockConfiguration.json'
+Write-Host "Service Principal Locked." -ForegroundColor Green
+Write-Host "--- Service Principal Lock - END ---" -ForegroundColor Yellow
+
+##################################
+###  Create a Service Principal for the API App Registration
 ##################################
 Write-Host "--- Create a ServicePrincipal - START ---" -ForegroundColor Yellow
 
