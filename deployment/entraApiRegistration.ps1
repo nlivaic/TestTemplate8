@@ -3,9 +3,6 @@
 ##################################
 Param( [string]$projectName, [string]$tenantId )
 
-echo "Here goes tenantId: "
-echo $tenantId
-
 $displayNameApi = "$($projectName)Api"
 
 Write-Host "--- Create Azure App Registration - START ---" -ForegroundColor Yellow
