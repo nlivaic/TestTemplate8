@@ -51,12 +51,12 @@ $bodyOauth2PermissionScopesApiOld = @{
     api = $appRegistrationResult.api
 }
 $bodyOauth2PermissionScopesApiOldJsonEscaped = ($bodyOauth2PermissionScopesApiOld|ConvertTo-Json -d 4 -Compress)
-$bodyOauth2PermissionScopesApiOldJsonEscaped | Out-File -FilePath .\oauth2PermissionScopesOld.json
+$bodyOauth2PermissionScopesApiOldJsonEscaped | Out-File -FilePath .\deployment\oauth2PermissionScopesOld.json
 az rest --method PATCH --uri $graphurl --headers $headerJson --body '@deployment/oauth2PermissionScopesOld.json'
-Remove-Item .\oauth2PermissionScopesOld.json
+Remove-Item .\deployment\oauth2PermissionScopesOld.json
 Write-Host "Existing scopes disabled successfully." -ForegroundColor Green
 
-# 3. Add new scopes from file oauth2PermissionScopes.json.
+# 3. Add new scopes from file deployment/oauth2PermissionScopes.json.
 Write-Host ""
 Write-Host "Creating scopes..." -ForegroundColor Green
 az rest --method PATCH --uri $graphurl --headers $headerJson --body '@deployment/oauth2PermissionScopes.json'
@@ -69,9 +69,9 @@ if ($? -eq $false) {
         $scope.isEnabled = 'true'
     }
     $bodyOauth2PermissionScopesApiOldJsonEscaped = ($bodyOauth2PermissionScopesApiOld|ConvertTo-Json -d 4 -Compress)
-    $bodyOauth2PermissionScopesApiOldJsonEscaped | Out-File -FilePath .\oauth2PermissionScopesOld.json
+    $bodyOauth2PermissionScopesApiOldJsonEscaped | Out-File -FilePath .\deployment\oauth2PermissionScopesOld.json
     az rest --method PATCH --uri $graphurl --headers $headerJson --body '@deployment/oauth2PermissionScopesOld.json'
-    Remove-Item .\oauth2PermissionScopesOld.json
+    Remove-Item .\deployment\oauth2PermissionScopesOld.json
     Write-Host "--- Add scopes - END (Error) ---" -ForegroundColor Red
     Return
 }
